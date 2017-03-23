@@ -38,7 +38,7 @@ class FirebaseController {
                 "description": item._description,
                 "amount": item._amount,
                 "state": item._state,
-                "unit": item._unit
+                "unit": item._unit.rawValue
                 ] as [String : Any]
             
             itemsDict.append(itemDict as [String : AnyObject])
@@ -73,7 +73,7 @@ class FirebaseController {
             "description": item._description,
             "amount": item._amount,
             "state": item._state,
-            "unit": item._unit
+            "unit": item._unit.rawValue
         ] as [String : Any]
 
         

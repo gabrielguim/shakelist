@@ -1,0 +1,6 @@
+framework module Pods_Shake_list {
+  umbrella header "Pods-Shake list-umbrella.h"
+
+  export *
+  module * { export * }
+}

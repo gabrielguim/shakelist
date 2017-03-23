@@ -8,20 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		3F5DB4FB1E81569200F25175 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB4FA1E81569200F25175 /* AppDelegate.swift */; };
-		3F5DB4FD1E81569200F25175 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB4FC1E81569200F25175 /* ViewController.swift */; };
 		3F5DB5001E81569200F25175 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB4FE1E81569200F25175 /* Main.storyboard */; };
 		3F5DB5021E81569200F25175 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB5011E81569200F25175 /* Assets.xcassets */; };
 		3F5DB5051E81569200F25175 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB5031E81569200F25175 /* LaunchScreen.storyboard */; };
+		3F5DB50E1E81593F00F25175 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */; };
+		3F5DB5101E8159B700F25175 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB50F1E8159B700F25175 /* List.swift */; };
+		3F5DB5121E8159F900F25175 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5111E8159F900F25175 /* Item.swift */; };
+		3F5DB5141E815A1100F25175 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5131E815A1100F25175 /* User.swift */; };
+		3F5DB5161E81655400F25175 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */; };
+		3F5DB5181E81669500F25175 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5171E81669500F25175 /* ListTableViewCell.swift */; };
+		3F5DB51A1E816BED00F25175 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */; };
+		3FFC4FF51E82B87600A17987 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */; };
+		3FFC4FF71E82BA3200A17987 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */; };
+		D20CAD2B8C9F460A7A397DEA /* Pods_Shake_list.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4146F09A1E7ACD503C347FF6 /* Pods_Shake_list.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F5DB4F71E81569200F25175 /* Shake list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shake list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5DB4FA1E81569200F25175 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F5DB4FC1E81569200F25175 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F5DB4FF1E81569200F25175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F5DB5011E81569200F25175 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5DB5041E81569200F25175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F5DB5061E81569200F25175 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
+		3F5DB50F1E8159B700F25175 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		3F5DB5111E8159F900F25175 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3F5DB5131E815A1100F25175 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		3F5DB5171E81669500F25175 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		4146F09A1E7ACD503C347FF6 /* Pods_Shake_list.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shake_list.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60006E2D462C34FC1F9F4F6 /* Pods-Shake list.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shake list.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shake list/Pods-Shake list.release.xcconfig"; sourceTree = "<group>"; };
+		F36B42C20D9C50862C4D0DD4 /* Pods-Shake list.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shake list.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shake list/Pods-Shake list.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +49,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20CAD2B8C9F460A7A397DEA /* Pods_Shake_list.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B7558452EA55BF1F6EB5CC7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F36B42C20D9C50862C4D0DD4 /* Pods-Shake list.debug.xcconfig */,
+				D60006E2D462C34FC1F9F4F6 /* Pods-Shake list.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3F5DB4EE1E81569200F25175 = {
 			isa = PBXGroup;
 			children = (
 				3F5DB4F91E81569200F25175 /* Shake list */,
 				3F5DB4F81E81569200F25175 /* Products */,
+				3B7558452EA55BF1F6EB5CC7 /* Pods */,
+				EC9DC8937BC2BE8ABB67F556 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +86,38 @@
 		3F5DB4F91E81569200F25175 /* Shake list */ = {
 			isa = PBXGroup;
 			children = (
-				3F5DB4FA1E81569200F25175 /* AppDelegate.swift */,
-				3F5DB4FC1E81569200F25175 /* ViewController.swift */,
+				3F5DB50C1E8156A000F25175 /* Supporting Files */,
 				3F5DB4FE1E81569200F25175 /* Main.storyboard */,
+				3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */,
+				3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */,
+				3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */,
+				3F5DB5171E81669500F25175 /* ListTableViewCell.swift */,
+				3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */,
+				3F5DB50F1E8159B700F25175 /* List.swift */,
+				3F5DB5111E8159F900F25175 /* Item.swift */,
+				3F5DB5131E815A1100F25175 /* User.swift */,
+				3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */,
 				3F5DB5011E81569200F25175 /* Assets.xcassets */,
+			);
+			path = "Shake list";
+			sourceTree = "<group>";
+		};
+		3F5DB50C1E8156A000F25175 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F5DB4FA1E81569200F25175 /* AppDelegate.swift */,
 				3F5DB5031E81569200F25175 /* LaunchScreen.storyboard */,
 				3F5DB5061E81569200F25175 /* Info.plist */,
 			);
-			path = "Shake list";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC9DC8937BC2BE8ABB67F556 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4146F09A1E7ACD503C347FF6 /* Pods_Shake_list.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F5DB5091E81569200F25175 /* Build configuration list for PBXNativeTarget "Shake list" */;
 			buildPhases = (
+				4C0819D5054E786957438634 /* [CP] Check Pods Manifest.lock */,
 				3F5DB4F31E81569200F25175 /* Sources */,
 				3F5DB4F41E81569200F25175 /* Frameworks */,
 				3F5DB4F51E81569200F25175 /* Resources */,
+				B99425722A968D82E40986E3 /* [CP] Embed Pods Frameworks */,
+				2777A4913CA500ABA60AE0C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5DB5051E81569200F25175 /* LaunchScreen.storyboard in Resources */,
+				3FFC4FF51E82B87600A17987 /* GoogleService-Info.plist in Resources */,
 				3F5DB5021E81569200F25175 /* Assets.xcassets in Resources */,
 				3F5DB5001E81569200F25175 /* Main.storyboard in Resources */,
 			);
@@ -131,13 +191,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2777A4913CA500ABA60AE0C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shake list/Pods-Shake list-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C0819D5054E786957438634 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B99425722A968D82E40986E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shake list/Pods-Shake list-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F5DB4F31E81569200F25175 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F5DB4FD1E81569200F25175 /* ViewController.swift in Sources */,
+				3FFC4FF71E82BA3200A17987 /* FirebaseController.swift in Sources */,
+				3F5DB5181E81669500F25175 /* ListTableViewCell.swift in Sources */,
+				3F5DB5121E8159F900F25175 /* Item.swift in Sources */,
 				3F5DB4FB1E81569200F25175 /* AppDelegate.swift in Sources */,
+				3F5DB50E1E81593F00F25175 /* ListsTableViewController.swift in Sources */,
+				3F5DB5141E815A1100F25175 /* User.swift in Sources */,
+				3F5DB5161E81655400F25175 /* ItemTableViewCell.swift in Sources */,
+				3F5DB51A1E816BED00F25175 /* ItemTableViewController.swift in Sources */,
+				3F5DB5101E8159B700F25175 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +371,7 @@
 		};
 		3F5DB50A1E81569200F25175 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36B42C20D9C50862C4D0DD4 /* Pods-Shake list.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Shake list/Info.plist";
@@ -268,6 +384,7 @@
 		};
 		3F5DB50B1E81569200F25175 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D60006E2D462C34FC1F9F4F6 /* Pods-Shake list.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Shake list/Info.plist";
@@ -297,6 +414,7 @@
 				3F5DB50B1E81569200F25175 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

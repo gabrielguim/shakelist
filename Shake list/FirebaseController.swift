@@ -63,8 +63,80 @@ class FirebaseController {
         listsRef.setValue(dict)
     }
     
+    static func retrieveLists(_ completionHandler: @escaping ([List]) -> Void) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+  
+        let listsRef = self.ref.child(lists)
+        var allLists: [List] = [List]()
+        
+        listsRef.observe(.value, with: { snapshot in
+            
+            if !snapshot.exists() { return }
+            
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                allLists = []
+                
+                for snap in snapshots {
+                    
+                    if let postDictionary = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        var list: List = List(name: snap.key)
+                        
+                        let dateFormatterPrint = DateFormatter()
+                        dateFormatterPrint.dateFormat = "dd/MM/yyyy"
+                        
+                        if let data = postDictionary["date"] as? String {
+                            let creationDate: Date = dateFormatterPrint.date(from: data)!
+                            list._creationDate = creationDate
+                        }
+                        
+                        list._items = []
+                        
+
+                        if let itemsDictionary = postDictionary["items"] as? Dictionary<String, AnyObject> {
+                            
+                            for item in itemsDictionary {
+                                
+                                if let currentItem = item.value as? Dictionary<String, AnyObject> {
+                                    
+                                    var unit = Item.Unit.kg
+                                    
+                                    if currentItem["unit"] as? String == Item.Unit.liter.rawValue {
+                                        unit = Item.Unit.liter
+                                    } else if currentItem["unit"] as? String == Item.Unit.unit.rawValue {
+                                        unit = Item.Unit.unit
+                                    }
+                                    
+                                    var newItem = Item(name: item.key, amount: currentItem["amount"] as! Int, unit: unit, description: (currentItem["description"] as? String)!)
+                                    
+                                    list._items.insert(newItem, at: 0)
+
+                                }
+                                
+                            }
+                        }
+                        
+                        allLists.append(list)
+                    }
+                    
+                }
+                
+                completionHandler(allLists)
+                
+            }
+            
+        })
+    }
+    
+
+    
     static func save(item: Item, on: List){
-        FIRApp.configure()
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
 
         let listsRef = self.ref.child(lists).child(on._name).child(items).child(item._name)
         

@@ -13,7 +13,7 @@ class List {
     
     let _name: String
     var _items: [Item]
-    let _creationDate: Date
+    var _creationDate: Date
     var _friendsList: [User]
     
     init (name: String) {

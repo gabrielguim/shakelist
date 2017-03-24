@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
 class ListsTableViewController: UITableViewController {
     
@@ -30,7 +32,6 @@ class ListsTableViewController: UITableViewController {
                 let novaLista = List(name: (nameTextField?.text)!)
                 
                 FirebaseController.save(list: novaLista)
-                self.tableView.reloadData()
             }
             
         }))
@@ -51,10 +52,15 @@ class ListsTableViewController: UITableViewController {
         }
     }
     
-    var list: [List] = ListDAO.getListaGeral()
+    var lists: [List]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FirebaseController.retrieveLists { (lists) in
+            self.lists = lists
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +72,8 @@ class ListsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.list.count
+        print((self.lists?.count)!)
+        return (self.lists?.count)!
     }
 
 
@@ -75,67 +82,33 @@ class ListsTableViewController: UITableViewController {
 
         // Configure the cell...
         if let itemList = cell as? ListTableViewCell {
-            let currentItem = list[indexPath.row]
+            let currentItem = lists?[indexPath.row]
             
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "dd/MM/yyyy"
-            let creationDate = dateFormatterPrint.string(from: currentItem._creationDate)
+            let creationDate = dateFormatterPrint.string(from: (currentItem?._creationDate)!)
             
-            itemList.name.text = currentItem._name
+            itemList.name.text = currentItem?._name
+            
             itemList.date.text = creationDate
             
-            var itemString = "\(String(currentItem._items.count)) item"
+            var itemString = "\(String(describing: (currentItem?._items.count)!)) item"
             
-            if (currentItem._items.count > 1) {
-                itemString = "\(String(currentItem._items.count)) itens"
-            } else if (currentItem._items.count == 0) {
+            if ((currentItem?._items.count)! > 1) {
+                itemString = "\(String(describing: (currentItem?._items.count)!)) itens"
+            } else if (currentItem?._items.count == 0) {
                 itemString = "Sem itens por enquanto"
             }
             
             itemList.amount.text = itemString
             
-            if (currentItem._friendsList.count != 0){
+            if (currentItem?._friendsList.count != 0){
                 itemList.shared.image = UIImage(named: "ic_group")
             }
         }
 
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -144,7 +117,7 @@ class ListsTableViewController: UITableViewController {
             if let novaView = segue.destination as? ItemTableViewController {
                 
                 if let indice = (tableView.indexPathForSelectedRow?.row) {
-                    let listaSelecionada = self.list[indice]
+                    let listaSelecionada = self.lists?[indice]
                     
                     novaView.list = listaSelecionada
                 }

@@ -131,8 +131,6 @@ class FirebaseController {
         })
     }
     
-
-    
     static func save(item: Item, on: List){
         if (FIRApp.defaultApp() == nil){
             FIRApp.configure()

@@ -63,12 +63,17 @@ class ItemTableViewController: UITableViewController {
                 let novoItem = Item(name: (nameTextField?.text)!, amount: Int((amountTextField?.text)!)!, unit: unit, description: (descriptionTextField?.text)!)
                 
                 FirebaseController.save(item: novoItem, on: (self.list)!)
+                self.list?._items.append(novoItem)
                 self.tableView.reloadData()
             }
             
         }))
         
         alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        alert?.textFields![2].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        alert?.textFields![3].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+
         alert?.actions[1].isEnabled = false
         
         self.present(alert!, animated: true, completion: nil)
@@ -76,10 +81,16 @@ class ItemTableViewController: UITableViewController {
     }
     
     func textFieldDidChange(_ textField: UITextField) {
-        if (textField.text == ""){
-            alert?.actions[1].isEnabled = false
-        } else {
+        let nameTextField = alert?.textFields![0]
+        let descriptionTextField = alert?.textFields![1]
+        let amountTextField =  alert?.textFields![2]
+        let unitTextField = self.unitDownPicker
+        
+        if !((nameTextField?.text?.isEmpty)! || (descriptionTextField?.text?.isEmpty)!
+            || (amountTextField?.text?.isEmpty)! || (unitTextField?.text?.isEmpty)!) {
             alert?.actions[1].isEnabled = true
+        } else {
+            alert?.actions[1].isEnabled = false
         }
     }
     

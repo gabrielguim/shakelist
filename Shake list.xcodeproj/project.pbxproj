@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F5DB4FB1E81569200F25175 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB4FA1E81569200F25175 /* AppDelegate.swift */; };
-		3F5DB5001E81569200F25175 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB4FE1E81569200F25175 /* Main.storyboard */; };
 		3F5DB5021E81569200F25175 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB5011E81569200F25175 /* Assets.xcassets */; };
 		3F5DB5051E81569200F25175 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5DB5031E81569200F25175 /* LaunchScreen.storyboard */; };
 		3F5DB50E1E81593F00F25175 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */; };
@@ -18,15 +17,18 @@
 		3F5DB5161E81655400F25175 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */; };
 		3F5DB5181E81669500F25175 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5171E81669500F25175 /* ListTableViewCell.swift */; };
 		3F5DB51A1E816BED00F25175 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */; };
+		3FE9B1981E8A920A00BAF457 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9B1971E8A920A00BAF457 /* LoginViewController.swift */; };
+		3FE9B19B1E8A947C00BAF457 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE9B1991E8A947C00BAF457 /* Main.storyboard */; };
+		3FE9B19D1E8A9EEF00BAF457 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9B19C1E8A9EEF00BAF457 /* AccountViewController.swift */; };
 		3FFC4FF51E82B87600A17987 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */; };
 		3FFC4FF71E82BA3200A17987 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */; };
+		3FFC4FFB1E8A803B00A17987 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFC4FFA1E8A803B00A17987 /* CheckBox.swift */; };
 		D20CAD2B8C9F460A7A397DEA /* Pods_Shake_list.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4146F09A1E7ACD503C347FF6 /* Pods_Shake_list.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F5DB4F71E81569200F25175 /* Shake list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shake list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5DB4FA1E81569200F25175 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F5DB4FF1E81569200F25175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F5DB5011E81569200F25175 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5DB5041E81569200F25175 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F5DB5061E81569200F25175 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,8 +39,12 @@
 		3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		3F5DB5171E81669500F25175 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		3FE9B1971E8A920A00BAF457 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3FE9B19A1E8A947C00BAF457 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3FE9B19C1E8A9EEF00BAF457 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		3FFC4FFA1E8A803B00A17987 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		4146F09A1E7ACD503C347FF6 /* Pods_Shake_list.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shake_list.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60006E2D462C34FC1F9F4F6 /* Pods-Shake list.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shake list.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shake list/Pods-Shake list.release.xcconfig"; sourceTree = "<group>"; };
 		F36B42C20D9C50862C4D0DD4 /* Pods-Shake list.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shake list.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shake list/Pods-Shake list.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,30 +92,89 @@
 		3F5DB4F91E81569200F25175 /* Shake list */ = {
 			isa = PBXGroup;
 			children = (
-				3F5DB50C1E8156A000F25175 /* Supporting Files */,
-				3F5DB4FE1E81569200F25175 /* Main.storyboard */,
-				3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */,
-				3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */,
-				3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */,
-				3F5DB5171E81669500F25175 /* ListTableViewCell.swift */,
-				3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */,
-				3F5DB50F1E8159B700F25175 /* List.swift */,
-				3F5DB5111E8159F900F25175 /* Item.swift */,
-				3F5DB5131E815A1100F25175 /* User.swift */,
-				3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */,
+				3F5DB50C1E8156A000F25175 /* Supporting files */,
+				3FFC4FFF1E8A8AC500A17987 /* view */,
+				3FFC50011E8A8B0300A17987 /* controller */,
+				3FFC4FFE1E8A8AAC00A17987 /* model */,
 				3F5DB5011E81569200F25175 /* Assets.xcassets */,
 			);
 			path = "Shake list";
 			sourceTree = "<group>";
 		};
-		3F5DB50C1E8156A000F25175 /* Supporting Files */ = {
+		3F5DB50C1E8156A000F25175 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				3FFC4FF41E82B87600A17987 /* GoogleService-Info.plist */,
 				3F5DB4FA1E81569200F25175 /* AppDelegate.swift */,
 				3F5DB5031E81569200F25175 /* LaunchScreen.storyboard */,
 				3F5DB5061E81569200F25175 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		3FE9B19E1E8AA53C00BAF457 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FE9B1971E8A920A00BAF457 /* LoginViewController.swift */,
+				3FE9B19C1E8A9EEF00BAF457 /* AccountViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3FFC4FFC1E8A8A8100A17987 /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F5DB5191E816BED00F25175 /* ItemTableViewController.swift */,
+				3F5DB50D1E81593F00F25175 /* ListsTableViewController.swift */,
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		3FFC4FFD1E8A8A9A00A17987 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3F5DB5151E81655400F25175 /* ItemTableViewCell.swift */,
+				3F5DB5171E81669500F25175 /* ListTableViewCell.swift */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		3FFC4FFE1E8A8AAC00A17987 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3F5DB50F1E8159B700F25175 /* List.swift */,
+				3F5DB5111E8159F900F25175 /* Item.swift */,
+				3F5DB5131E815A1100F25175 /* User.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		3FFC4FFF1E8A8AC500A17987 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3FE9B1991E8A947C00BAF457 /* Main.storyboard */,
+				3FE9B19E1E8AA53C00BAF457 /* ViewControllers */,
+				3FFC4FFD1E8A8A9A00A17987 /* TableViewCells */,
+				3FFC4FFC1E8A8A8100A17987 /* TableViewControllers */,
+				3FFC50001E8A8AEF00A17987 /* Buttons */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		3FFC50001E8A8AEF00A17987 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				3FFC4FFA1E8A803B00A17987 /* CheckBox.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		3FFC50011E8A8B0300A17987 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				3FFC4FF61E82BA3200A17987 /* FirebaseController.swift */,
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 		EC9DC8937BC2BE8ABB67F556 /* Frameworks */ = {
@@ -185,7 +250,7 @@
 				3F5DB5051E81569200F25175 /* LaunchScreen.storyboard in Resources */,
 				3FFC4FF51E82B87600A17987 /* GoogleService-Info.plist in Resources */,
 				3F5DB5021E81569200F25175 /* Assets.xcassets in Resources */,
-				3F5DB5001E81569200F25175 /* Main.storyboard in Resources */,
+				3FE9B19B1E8A947C00BAF457 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,33 +311,36 @@
 			files = (
 				3FFC4FF71E82BA3200A17987 /* FirebaseController.swift in Sources */,
 				3F5DB5181E81669500F25175 /* ListTableViewCell.swift in Sources */,
+				3FE9B19D1E8A9EEF00BAF457 /* AccountViewController.swift in Sources */,
 				3F5DB5121E8159F900F25175 /* Item.swift in Sources */,
 				3F5DB4FB1E81569200F25175 /* AppDelegate.swift in Sources */,
+				3FFC4FFB1E8A803B00A17987 /* CheckBox.swift in Sources */,
 				3F5DB50E1E81593F00F25175 /* ListsTableViewController.swift in Sources */,
 				3F5DB5141E815A1100F25175 /* User.swift in Sources */,
 				3F5DB5161E81655400F25175 /* ItemTableViewCell.swift in Sources */,
 				3F5DB51A1E816BED00F25175 /* ItemTableViewController.swift in Sources */,
 				3F5DB5101E8159B700F25175 /* List.swift in Sources */,
+				3FE9B1981E8A920A00BAF457 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3F5DB4FE1E81569200F25175 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F5DB4FF1E81569200F25175 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3F5DB5031E81569200F25175 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3F5DB5041E81569200F25175 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3FE9B1991E8A947C00BAF457 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FE9B19A1E8A947C00BAF457 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

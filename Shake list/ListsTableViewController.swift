@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import Firebase
 
 class ListsTableViewController: UITableViewController {
     
     var alert: UIAlertController?
+    var currentUser: User?
     
     @IBAction func newListButton(_ sender: Any) {
         
@@ -29,14 +28,14 @@ class ListsTableViewController: UITableViewController {
             let nameTextField = alert?.textFields![0]
             
             if !((nameTextField?.text?.isEmpty)!) {
-                let novaLista = List(name: (nameTextField?.text)!)
+                
+                let novaLista = List(name: (nameTextField?.text)!, major: (self.currentUser?._email)!)
                 
                 FirebaseController.save(list: novaLista)
             }
             
         }))
         
-        // Default values
         alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         alert?.actions[1].isEnabled = false
         
@@ -53,14 +52,15 @@ class ListsTableViewController: UITableViewController {
     }
     
     var lists: [List]? = []
+    var email: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseController.retrieveLists { (lists) in
+        FirebaseController.retrieveLists(handler: { (lists) in
             self.lists = lists
             self.tableView.reloadData()
-        }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +72,6 @@ class ListsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print((self.lists?.count)!)
         return (self.lists?.count)!
     }
 
@@ -102,7 +101,7 @@ class ListsTableViewController: UITableViewController {
             
             itemList.amount.text = itemString
             
-            if (currentItem?._friendsList.count != 0){
+            if ((currentItem?._usersList.count)! > 1){
                 itemList.shared.image = UIImage(named: "ic_group")
             }
         }

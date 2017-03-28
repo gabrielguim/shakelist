@@ -3,6 +3,7 @@ use_frameworks!
 
 pod 'Firebase'
 pod 'Firebase/Database'
+pod 'Firebase/Auth’
 pod 'DownPicker'
 
 target 'Shake list' do

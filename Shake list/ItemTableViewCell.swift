@@ -13,10 +13,9 @@ class ItemTableViewCell: UITableViewCell {
     var item: Item?
     var delegate: ItemTableViewController?
 
+    @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var status: UISwitch!
     @IBOutlet weak var amount: UILabel!
-
     
     @IBAction func detail(_ sender: Any) {
     

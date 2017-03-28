@@ -15,6 +15,39 @@ class ItemTableViewController: UITableViewController {
     var pickerData: [String] = [String]()
     var unitDownPicker: DownPicker!
 
+    @IBOutlet weak var titleName: UILabel!
+    
+    @IBAction func listInfoButton(_ sender: Any) {
+        
+    }
+    
+    @IBAction func shareListButton(_ sender: Any) {
+        alert = UIAlertController(title: "Compartilhar lista (\((self.list?._name)!))", message: "", preferredStyle: .alert)
+        
+        alert?.addTextField { (emailTextField) in
+            emailTextField.placeholder = "E-mail"
+        }
+        
+        alert?.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { (action: UIAlertAction!) in }))
+        
+        
+        alert?.addAction(UIAlertAction(title: "Compartilhar", style: .default, handler: { [weak alert] (_) in
+            let emailTextField = alert?.textFields![0]
+            
+            if !((emailTextField?.text?.isEmpty)!) {
+                
+            }
+            
+        }))
+        
+        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        
+        alert?.actions[1].isEnabled = false
+        
+        self.present(alert!, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func newItemButton(_ sender: Any) {
         
         alert = UIAlertController(title: "Criar item", message: "", preferredStyle: .alert)
@@ -69,10 +102,10 @@ class ItemTableViewController: UITableViewController {
             
         }))
         
-        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        alert?.textFields![2].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        alert?.textFields![3].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        alert?.textFields![2].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        alert?.textFields![3].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
 
         alert?.actions[1].isEnabled = false
         
@@ -80,7 +113,22 @@ class ItemTableViewController: UITableViewController {
         
     }
     
+    func isValidEmail(testEmail :String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testEmail)
+    }
+    
     func textFieldDidChange(_ textField: UITextField) {
+        if (isValidEmail(testEmail: textField.text!)){
+            alert?.actions[1].isEnabled = true
+        } else {
+            alert?.actions[1].isEnabled = false
+        }
+    }
+    
+    func textFieldDidChangeAll(_ textField: UITextField) {
         let nameTextField = alert?.textFields![0]
         let descriptionTextField = alert?.textFields![1]
         let amountTextField =  alert?.textFields![2]
@@ -98,7 +146,7 @@ class ItemTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()        
-        self.title = list?._name
+        self.titleName.text = self.list?._name
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,7 +160,6 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.list?._items.count)!
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemIdentifier", for: indexPath)
@@ -123,7 +170,7 @@ class ItemTableViewController: UITableViewController {
 
             itemCell.amount.text = "\((String(describing: (currentItem?._amount)!))) \((currentItem?._unit.rawValue)!)"
             itemCell.name.text = currentItem?._name
-            itemCell.status.isOn = (currentItem?._state)!
+            itemCell.checkBox.isChecked = (currentItem?._state)!
             
             itemCell.item = currentItem
             itemCell.delegate = self
@@ -132,5 +179,5 @@ class ItemTableViewController: UITableViewController {
 
         return cell
     }
-
+    
 }

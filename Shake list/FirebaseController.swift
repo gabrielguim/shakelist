@@ -285,5 +285,49 @@ class FirebaseController {
         
         listsRef.setValue(user._email)
     }
+    
+    static func retrieveList(list: List, handler completionHandler: @escaping (List) -> Void) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+        
+        let listsRef = self.ref.child(lists).child(list._name).child(items)
+        let lista = List(name: list._name, major: list._majorUser)
+        
+        listsRef.observe(.value, with: { snapshot in
+            
+            if !snapshot.exists() { return }
+            
+                if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    var items: [Item] = []
+                    lista._items = items
+                    
+                    for snap in snapshots {
 
+                        if let postDictionary = snap.value as? Dictionary<String, AnyObject> {
+                            var unit = Item.Unit.kg
+                            
+                            if postDictionary["unit"] as? String == Item.Unit.liter.rawValue {
+                                unit = Item.Unit.liter
+                            } else if postDictionary["unit"] as? String == Item.Unit.unit.rawValue {
+                                unit = Item.Unit.unit
+                            }
+                            
+                            let newItem = Item(name: postDictionary["name"] as! String, amount: postDictionary["amount"] as! Int, unit: unit, description: (postDictionary["description"] as? String)!)
+                            
+                            newItem._state = postDictionary["state"] as! Bool
+                            
+                            items.append(newItem)
+                        }
+                    }
+                    
+                    for item in items {
+                        lista._items.append(item)
+                    }
+                    
+                    completionHandler(lista)
+                }
+        })
+    }
+    
 }

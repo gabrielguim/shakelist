@@ -80,11 +80,8 @@ class ItemTableViewController: UITableViewController {
             let descriptionTextField = alert?.textFields![1]
             let amountTextField =  alert?.textFields![2]
             let unitTextField = self.unitDownPicker
-            
-            print(self.unitDownPicker.selectedIndex)
-            
-            if !((nameTextField?.text?.isEmpty)! || (descriptionTextField?.text?.isEmpty)!
-                || (amountTextField?.text?.isEmpty)! || (self.unitDownPicker.selectedIndex != nil)) {
+                        
+            if (!(nameTextField?.text?.isEmpty)! && !(descriptionTextField?.text?.isEmpty)! && !(amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
                 
                 var unit: Item.Unit
                 
@@ -147,6 +144,12 @@ class ItemTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         self.titleName.text = self.list?._name
+        
+        FirebaseController.retrieveList(list: list!, handler: { (list) in
+            self.list = list
+            self.tableView.reloadData()
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -171,7 +174,6 @@ class ItemTableViewController: UITableViewController {
             itemCell.amount.text = "\((String(describing: (currentItem?._amount)!))) \((currentItem?._unit.rawValue)!)"
             itemCell.name.text = currentItem?._name
             
-            print(currentItem!._state)
             itemCell.checkBox.isChecked = (currentItem?._state)!
             
             itemCell.item = currentItem

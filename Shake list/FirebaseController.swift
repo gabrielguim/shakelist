@@ -46,6 +46,19 @@ class FirebaseController {
         return user!
     }
     
+    static func checkLoggedUserState(delegate: LoginViewController) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+        
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            if user != nil {
+                delegate.performSegue(withIdentifier: "loginSegue", sender: nil)
+            }
+        }
+        
+    }
+    
     static func checkLoggedUser() -> Bool {
         
         if (FIRApp.defaultApp() == nil){

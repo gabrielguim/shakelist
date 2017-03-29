@@ -100,9 +100,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        if (FirebaseController.checkLoggedUser()){
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }
+        FirebaseController.checkLoggedUserState(delegate: self)
+    
     }
 
     override func didReceiveMemoryWarning() {

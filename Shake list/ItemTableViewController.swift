@@ -35,9 +35,9 @@ class ItemTableViewController: UITableViewController {
             let emailTextField = alert?.textFields![0]
             
             if !((emailTextField?.text?.isEmpty)!) {
-                
+                let user = User(email: (emailTextField?.text!)!)
+                FirebaseController.add(user: user, on: self.list!)
             }
-            
         }))
         
         alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)

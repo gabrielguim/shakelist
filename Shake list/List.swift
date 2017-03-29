@@ -22,7 +22,6 @@ class List {
         self._items = [Item]()
         self._creationDate = Date()
         self._usersList = [User]()
-        self._usersList.append(User(email: major))
         self._majorUser = major
     }
     

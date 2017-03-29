@@ -65,9 +65,14 @@ class LoginViewController: UIViewController {
         let password = passwordInput.text
         
         if isValidEmail(testEmail: email!) {
-            FirebaseController.loginUser(email: email!, password: password!)
             
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            FirebaseController.loginUser(email: email!, password: password!, handler: { (user, err) in
+                if let error = err {
+                    print(error.localizedDescription)
+                } else {
+                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                }
+            })
             
         } else {
             let refreshAlert = UIAlertController(title: "Erro ao efetuar login",
@@ -90,12 +95,14 @@ class LoginViewController: UIViewController {
         return emailTest.evaluate(with: testEmail)
     }
     
-    var email: String?
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        FirebaseController.checkLoggedUser(delegate: self)
+                
+        if (FirebaseController.checkLoggedUser()){
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,11 +113,7 @@ class LoginViewController: UIViewController {
         
         if segue.identifier == "loginSegue" {
             if let novaView = segue.destination as? ListsTableViewController {
-                if (email == nil) {
-                    novaView.email = emailInput.text
-                } else {
-                    novaView.email = self.email!
-                }
+                novaView.currentUser = User(email: emailInput.text!)
             }
         }
         

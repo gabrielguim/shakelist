@@ -1,3 +1,4 @@
+
 //
 //  FirebaseController.swift
 //  Shake list
@@ -14,7 +15,7 @@ import FirebaseAuth
 class FirebaseController {
     
     static let lists: String = "lists"
-    static let users: String = "users"
+    static let users: String = "usersList"
     static let items: String = "items"
     
     static let ref = FIRDatabase.database().reference(fromURL: "https://shake-a-list.firebaseio.com")
@@ -37,24 +38,21 @@ class FirebaseController {
         }
         
         var user: User?
+    
+        let email: String = (FIRAuth.auth()!.currentUser?.email)!
         
-        user = User(email: (FIRAuth.auth()!.currentUser?.email)!)
+        user = User(email: email)
         
         return user!
     }
     
-    static func checkLoggedUser(delegate: LoginViewController){
+    static func checkLoggedUser() -> Bool {
         
         if (FIRApp.defaultApp() == nil){
             FIRApp.configure()
         }
         
-        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-            if user != nil {
-                delegate.email = user?.email
-                delegate.performSegue(withIdentifier: "loginSegue", sender: nil)
-            }
-        }
+        return FIRAuth.auth()!.currentUser != nil
     }
     
     static func registerUser(email: String, password: String) {
@@ -90,12 +88,13 @@ class FirebaseController {
         return newEmail
     }
     
-    static func loginUser(email: String, password: String) {
+    static func loginUser(email: String, password: String, handler: @escaping FIRAuthResultCallback) {
         if (FIRApp.defaultApp() == nil){
             FIRApp.configure()
         }
         
-        FIRAuth.auth()!.signIn(withEmail: email, password: password)
+        FIRAuth.auth()!.signIn(withEmail: email, password: password, completion: handler)
+        
     }
     
     static func save(list: List){
@@ -127,7 +126,7 @@ class FirebaseController {
         for user in list._usersList {
             let userDict = [
                 "email": user._email
-            ]
+            ] as [String: Any]
             
             usersDict.append(userDict as [String : AnyObject])
         }
@@ -141,9 +140,10 @@ class FirebaseController {
         ]
         
         listsRef.setValue(dict)
+        add(user: User(email: list._majorUser), on: list)
     }
     
-    static func retrieveLists(handler completionHandler: @escaping ([List]) -> Void) {
+    static func retrieveLists(email: String, handler completionHandler: @escaping ([List]) -> Void) {
         if (FIRApp.defaultApp() == nil){
             FIRApp.configure()
         }
@@ -176,7 +176,6 @@ class FirebaseController {
                         
                         list._items = []
                         
-
                         if let itemsDictionary = postDictionary["items"] as? Dictionary<String, AnyObject> {
                             
                             for item in itemsDictionary {
@@ -198,26 +197,27 @@ class FirebaseController {
                                 }
                                 
                             }
-                            
-                            if let usersDictionary = postDictionary["usersList"] as? Dictionary<String, AnyObject> {
-                                
-                                for user in usersDictionary {
-                                    
-                                    if let currentUser = user.value as? Dictionary<String, AnyObject> {
-                                
-                                        let newUser = User(email: currentUser["email"] as! String)
-                                        
-                                        list._usersList.append(newUser)
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }
-                            
                         }
                         
-                        allLists.append(list)
+                        
+                        if let usersDictionary = postDictionary["usersList"] as? Dictionary<String, AnyObject> {
+                            
+                            for user in usersDictionary {
+                                
+                                let newUser = User(email: user.value as! String)
+                                    
+                                list._usersList.append(newUser)
+                                    
+                            }
+                                
+                        }
+                        
+                        
+                        for currentUser in list._usersList {
+                            if (currentUser._email == email){
+                                allLists.append(list)
+                            }
+                        }
 
                     }
                     
@@ -249,4 +249,16 @@ class FirebaseController {
         listsRef.setValue(itemDict)
     }
     
+    static func add(user: User, on: List) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+        
+        let email = replaceCharacters(of: user._email)
+        
+        let listsRef = self.ref.child(lists).child(on._name).child(users).child(email)
+        
+        listsRef.setValue(user._email)
+    }
+
 }

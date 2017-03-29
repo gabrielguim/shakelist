@@ -11,7 +11,6 @@ import UIKit
 class ListsTableViewController: UITableViewController {
     
     var alert: UIAlertController?
-    var currentUser: User?
     
     @IBAction func newListButton(_ sender: Any) {
         
@@ -52,12 +51,16 @@ class ListsTableViewController: UITableViewController {
     }
     
     var lists: [List]? = []
-    var email: String?
+    var currentUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if (currentUser == nil) {
+            self.currentUser = FirebaseController.getCurrentUser()
+        }
         
-        FirebaseController.retrieveLists(handler: { (lists) in
+        FirebaseController.retrieveLists(email: (currentUser?._email)!, handler: { (lists) in
             self.lists = lists
             self.tableView.reloadData()
         })

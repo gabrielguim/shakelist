@@ -170,10 +170,13 @@ class ItemTableViewController: UITableViewController {
 
             itemCell.amount.text = "\((String(describing: (currentItem?._amount)!))) \((currentItem?._unit.rawValue)!)"
             itemCell.name.text = currentItem?._name
+            
+            print(currentItem!._state)
             itemCell.checkBox.isChecked = (currentItem?._state)!
             
             itemCell.item = currentItem
             itemCell.delegate = self
+            itemCell.list = self.list
             
         }
 

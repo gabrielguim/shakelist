@@ -17,7 +17,7 @@ class Item {
     let _name: String
     let _amount: Int
     let _unit: Unit
-    let _state: Bool
+    var _state: Bool
     let _description: String
     
     init (name: String, amount: Int, unit: Unit, description: String) {

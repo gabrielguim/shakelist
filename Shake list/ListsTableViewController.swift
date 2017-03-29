@@ -106,6 +106,8 @@ class ListsTableViewController: UITableViewController {
             
             if ((currentItem?._usersList.count)! > 1){
                 itemList.shared.image = UIImage(named: "ic_group")
+            } else {
+                itemList.shared.image = nil
             }
         }
 

@@ -192,6 +192,8 @@ class FirebaseController {
                                     
                                     let newItem = Item(name: item.key, amount: currentItem["amount"] as! Int, unit: unit, description: (currentItem["description"] as? String)!)
                                     
+                                    newItem._state = currentItem["state"] as! Bool
+                                    
                                     list._items.insert(newItem, at: 0)
 
                                 }
@@ -247,6 +249,16 @@ class FirebaseController {
 
         
         listsRef.setValue(itemDict)
+    }
+    
+    static func check(item: Item, on: List) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+        
+        let listsRef = self.ref.child(lists).child(on._name).child(items).child(item._name).child("state")
+        
+        listsRef.setValue(item._state)
     }
     
     static func add(user: User, on: List) {

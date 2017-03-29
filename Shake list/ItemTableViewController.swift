@@ -81,8 +81,10 @@ class ItemTableViewController: UITableViewController {
             let amountTextField =  alert?.textFields![2]
             let unitTextField = self.unitDownPicker
             
+            print(self.unitDownPicker.selectedIndex)
+            
             if !((nameTextField?.text?.isEmpty)! || (descriptionTextField?.text?.isEmpty)!
-                || (amountTextField?.text?.isEmpty)! || (unitTextField?.text?.isEmpty)!) {
+                || (amountTextField?.text?.isEmpty)! || (self.unitDownPicker.selectedIndex != nil)) {
                 
                 var unit: Item.Unit
                 
@@ -105,8 +107,8 @@ class ItemTableViewController: UITableViewController {
         alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
         alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
         alert?.textFields![2].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-        alert?.textFields![3].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-
+        self.unitDownPicker.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .valueChanged)
+        
         alert?.actions[1].isEnabled = false
         
         self.present(alert!, animated: true, completion: nil)
@@ -132,10 +134,8 @@ class ItemTableViewController: UITableViewController {
         let nameTextField = alert?.textFields![0]
         let descriptionTextField = alert?.textFields![1]
         let amountTextField =  alert?.textFields![2]
-        let unitTextField = self.unitDownPicker
         
-        if !((nameTextField?.text?.isEmpty)! || (descriptionTextField?.text?.isEmpty)!
-            || (amountTextField?.text?.isEmpty)! || (unitTextField?.text?.isEmpty)!) {
+        if (!(nameTextField?.text?.isEmpty)! && !(descriptionTextField?.text?.isEmpty)! && !(amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
             alert?.actions[1].isEnabled = true
         } else {
             alert?.actions[1].isEnabled = false

@@ -8,108 +8,165 @@
 
 import UIKit
 import DownPicker
+import SCLAlertView
 
 class ItemTableViewController: UITableViewController {
     
-    var alert: UIAlertController?
+    var shareAlert: SCLAlertView?
+    var itemAlert: SCLAlertView?
     var pickerData: [String] = [String]()
     var unitDownPicker: DownPicker!
-
+    
+    // alert text fields
+    var nameTextField: UITextField?
+    var descriptionTextField: UITextField?
+    var amountTextField: UITextField?
+    var unitTextField: UITextField?
+    var emailTextField: UITextField?
+    var createButton: SCLButton?
+    var shareButton: SCLButton?
+    
     @IBOutlet weak var titleName: UILabel!
     
     @IBAction func listInfoButton(_ sender: Any) {
-        
+    
     }
     
     @IBAction func shareListButton(_ sender: Any) {
-        alert = UIAlertController(title: "Compartilhar lista (\((self.list?._name)!))", message: "", preferredStyle: .alert)
         
-        alert?.addTextField { (emailTextField) in
-            emailTextField.placeholder = "E-mail"
-        }
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
         
-        alert?.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { (action: UIAlertAction!) in }))
+        shareAlert = SCLAlertView(appearance: appearance)
+        emailTextField = shareAlert?.addTextField("E-mail")
+        emailTextField?.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        emailTextField?.autocapitalizationType = .none
         
-        
-        alert?.addAction(UIAlertAction(title: "Compartilhar", style: .default, handler: { [weak alert] (_) in
-            let emailTextField = alert?.textFields![0]
-            
-            if !((emailTextField?.text?.isEmpty)!) {
-                let user = User(email: (emailTextField?.text!)!)
+        shareButton = shareAlert?.addButton("Compartilhar") {
+            if !((self.emailTextField?.text?.isEmpty)!) {
+                let user = User(email: (self.emailTextField?.text!)!)
                 FirebaseController.add(user: user, on: self.list!)
             }
-        }))
+        }
         
-        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        shareAlert?.addButton("Cancelar") {}
         
-        alert?.actions[1].isEnabled = false
+        shareAlert?.showInfo("Compartilhar", subTitle: "Compartilhe sua lista!")
         
-        self.present(alert!, animated: true, completion: nil)
-        
+        shareButton?.isEnabled = false
+
     }
     
     @IBAction func newItemButton(_ sender: Any) {
         
-        alert = UIAlertController(title: "Criar item", message: "", preferredStyle: .alert)
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
         
-        alert?.addTextField { (nameTextField) in
-            nameTextField.placeholder = "Nome do item"
-        }
+        itemAlert = SCLAlertView(appearance: appearance)
         
-        alert?.addTextField { (descriptionTextField) in
-            descriptionTextField.placeholder = "Descriçāo"
-        }
         
-        alert?.addTextField { (amountTextField) in
-            amountTextField.placeholder = "Qtd."
-            amountTextField.keyboardType = UIKeyboardType.numberPad
-        }
+        nameTextField = itemAlert?.addTextField("Nome do item")
+        nameTextField?.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
         
-        alert?.addTextField{ (unitTextField) in
-            self.pickerData = [Item.Unit.kg.rawValue, Item.Unit.liter.rawValue, Item.Unit.unit.rawValue]
+        descriptionTextField = itemAlert?.addTextField("Descriçāo")
+        descriptionTextField?.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        
+        amountTextField = itemAlert?.addTextField("Qtd.")
+        amountTextField?.keyboardType = UIKeyboardType.numberPad
+        amountTextField?.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        
+        unitTextField = itemAlert?.addTextField("Unidade")
+        
+        self.pickerData = [Item.Unit.kg.rawValue, Item.Unit.liter.rawValue, Item.Unit.unit.rawValue]
+        self.unitDownPicker = DownPicker(textField: unitTextField, withData: self.pickerData)
+        self.unitDownPicker.setPlaceholder("Unidade")
+        self.unitDownPicker.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .valueChanged)
+        
+        createButton = itemAlert?.addButton("Adicionar") {
             
-            self.unitDownPicker = DownPicker(textField: unitTextField, withData: self.pickerData)
-            self.unitDownPicker.setPlaceholder("Unidade")
-        }
-        
-        alert?.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { (action: UIAlertAction!) in }))
-        
-        
-        alert?.addAction(UIAlertAction(title: "Criar", style: .default, handler: { [weak alert] (_) in
-            let nameTextField = alert?.textFields![0]
-            let descriptionTextField = alert?.textFields![1]
-            let amountTextField =  alert?.textFields![2]
-            let unitTextField = self.unitDownPicker
-                        
-            if (!(nameTextField?.text?.isEmpty)! && !(descriptionTextField?.text?.isEmpty)! && !(amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
+            if (!(self.nameTextField?.text?.isEmpty)! && !(self.descriptionTextField?.text?.isEmpty)! && !(self.amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
                 
                 var unit: Item.Unit
                 
-                switch ((unitTextField?.text)!) {
+                switch ((self.unitTextField?.text)!) {
                     case "Kg": unit = Item.Unit.kg
                     case "L": unit = Item.Unit.liter
                     case "Uni.": unit = Item.Unit.unit
                     default: unit = Item.Unit.kg
                 }
                 
-                let novoItem = Item(name: (nameTextField?.text)!, amount: Int((amountTextField?.text)!)!, unit: unit, description: (descriptionTextField?.text)!)
+                let novoItem = Item(name: (self.nameTextField?.text)!, amount: Int((self.amountTextField?.text)!)!, unit: unit, description: (self.descriptionTextField?.text)!)
                 
                 FirebaseController.save(item: novoItem, on: (self.list)!)
                 self.list?._items.append(novoItem)
                 self.tableView.reloadData()
             }
-            
-        }))
+
+        }
         
-        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-        alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-        alert?.textFields![2].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-        self.unitDownPicker.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .valueChanged)
+        itemAlert?.addButton("Cancelar") {}
         
-        alert?.actions[1].isEnabled = false
+        itemAlert?.showInfo("Adicionar", subTitle: "Adicione item à sua lista")
+        createButton?.isEnabled = false
         
-        self.present(alert!, animated: true, completion: nil)
+    }
+    
+    func textFieldDidChange(_ textField: UITextField) {
         
+        if(emailTextField?.text?.isEmpty)!{
+            emailTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            emailTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if !((emailTextField?.text?.isEmpty)!) {
+            shareButton?.isEnabled = true
+        } else {
+            shareButton?.isEnabled = false
+        }
+    }
+    
+    func textFieldDidChangeAll(_ textField: UITextField) {
+        
+        if(nameTextField?.text?.isEmpty)!{
+            nameTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            nameTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if(descriptionTextField?.text?.isEmpty)!{
+            descriptionTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            descriptionTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if(unitTextField?.text?.isEmpty)!{
+            unitTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            unitTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if(amountTextField?.text?.isEmpty)!{
+            amountTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            amountTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if (!(nameTextField?.text?.isEmpty)! && !(descriptionTextField?.text?.isEmpty)! && !(amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
+            createButton?.isEnabled = true
+        } else {
+            createButton?.isEnabled = false
+        }
     }
     
     func isValidEmail(testEmail :String) -> Bool {
@@ -117,26 +174,6 @@ class ItemTableViewController: UITableViewController {
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testEmail)
-    }
-    
-    func textFieldDidChange(_ textField: UITextField) {
-        if (isValidEmail(testEmail: textField.text!)){
-            alert?.actions[1].isEnabled = true
-        } else {
-            alert?.actions[1].isEnabled = false
-        }
-    }
-    
-    func textFieldDidChangeAll(_ textField: UITextField) {
-        let nameTextField = alert?.textFields![0]
-        let descriptionTextField = alert?.textFields![1]
-        let amountTextField =  alert?.textFields![2]
-        
-        if (!(nameTextField?.text?.isEmpty)! && !(descriptionTextField?.text?.isEmpty)! && !(amountTextField?.text?.isEmpty)! && self.unitDownPicker.selectedIndex != -1) {
-            alert?.actions[1].isEnabled = true
-        } else {
-            alert?.actions[1].isEnabled = false
-        }
     }
     
     var list: List?

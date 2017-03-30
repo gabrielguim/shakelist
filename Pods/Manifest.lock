@@ -35,12 +35,14 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
+  - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
   - DownPicker
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - SCLAlertView
 
 SPEC CHECKSUMS:
   DownPicker: c00ea63f08ae82116cc93d0eba74e86bf3d4c68e
@@ -52,7 +54,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: efff046dd669e3f2782768beee944ddee063abfc
+PODFILE CHECKSUM: 7546145e495c9903749a5d7fdab1a88451bede8b
 
 COCOAPODS: 1.2.0

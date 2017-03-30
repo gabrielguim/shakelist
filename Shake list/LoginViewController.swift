@@ -9,54 +9,67 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SCLAlertView
 
 class LoginViewController: UIViewController {
     
-    var alert: UIAlertController?
+    var registerAlert: SCLAlertView?
+    var emailTextField: UITextField?
+    var passwordTextField: UITextField?
+    var registerButton: SCLButton?
     
     @IBAction func registerButton(_ sender: Any) {
         
-        alert = UIAlertController(title: "Registrar-se", message: "Insira e-mail e senha para se registrar", preferredStyle: .alert)
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
         
-        alert?.addTextField { (emailTextField) in
-            emailTextField.placeholder = "E-mail"
-        }
+        registerAlert = SCLAlertView(appearance: appearance)
+        emailTextField = registerAlert?.addTextField("E-mail")
+        emailTextField?.keyboardType = .emailAddress
+        emailTextField?.autocapitalizationType = .none
+        emailTextField?.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
         
-        alert?.addTextField { (passwordTextField) in
-            passwordTextField.placeholder = "Senha"
-            passwordTextField.isSecureTextEntry = true
-        }
+        passwordTextField = registerAlert?.addTextField("Senha")
+        passwordTextField?.isSecureTextEntry = true
+        passwordTextField?.addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
         
-        alert?.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { (action: UIAlertAction!) in }))
-        
-        
-        alert?.addAction(UIAlertAction(title: "Registrar", style: .default, handler: { [weak alert] (_) in
-            let emailTextField = alert?.textFields![0]
-            let passwordTextField = alert?.textFields![1]
-            
-            if !((emailTextField?.text?.isEmpty)! && (passwordTextField?.text?.isEmpty)!) {
-                FirebaseController.registerUser(email: (emailTextField?.text)!, password: (passwordTextField?.text)!)
+        registerButton = registerAlert?.addButton("Registrar") {
+            if !((self.emailTextField?.text?.isEmpty)! && (self.passwordTextField?.text?.isEmpty)!) {
+                FirebaseController.registerUser(email: (self.emailTextField?.text)!, password: (self.passwordTextField?.text)!)
             }
-            
-        }))
+        }
         
-        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
-        alert?.textFields![1].addTarget(self, action: #selector(self.textFieldDidChangeAll(_:)), for: .editingChanged)
+        registerAlert?.addButton("Cancelar") {}
         
-        alert?.actions[1].isEnabled = false
+        registerAlert?.showInfo("Registrar", subTitle: "Registre-se agora!")
         
-        self.present(alert!, animated: true, completion: nil)
+        registerButton?.isEnabled = false
     
     }
     
     func textFieldDidChangeAll(_ textField: UITextField) {
-        let email = alert?.textFields![0]
-        let password = alert?.textFields![1]
         
-        if (isValidEmail(testEmail: (email?.text)!) && !((password?.text?.isEmpty)!) && (password?.text?.characters.count)! >= 6) {
-            alert?.actions[1].isEnabled = true
+        if !(isValidEmail(testEmail: (emailTextField?.text)!)) {
+            emailTextField?.layer.borderColor = UIColor.red.cgColor
         } else {
-            alert?.actions[1].isEnabled = false
+            emailTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+
+        if ((passwordTextField?.text?.isEmpty)! || (passwordTextField?.text?.characters.count)! < 6){
+            passwordTextField?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            passwordTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if (isValidEmail(testEmail: (emailTextField?.text)!) && !((passwordTextField?.text?.isEmpty)!) && (passwordTextField?.text?.characters.count)! >= 6) {
+            registerButton?.isEnabled = true
+        } else {
+            registerButton?.isEnabled = false
         }
     }
     
@@ -99,7 +112,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        emailInput?.keyboardType = .emailAddress
         FirebaseController.checkLoggedUserState(delegate: self)
     
     }

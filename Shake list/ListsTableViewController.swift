@@ -7,46 +7,57 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ListsTableViewController: UITableViewController {
     
-    var alert: UIAlertController?
+    var listAlert: SCLAlertView?
+    var nameTextField: UITextField?
+    var createButton: SCLButton?
     
     @IBAction func newListButton(_ sender: Any) {
         
-        alert = UIAlertController(title: "Criar lista", message: "", preferredStyle: .alert)
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
         
-        alert?.addTextField { (nameTextField) in
-            nameTextField.placeholder = "Nome da lista"
-        }
+        listAlert = SCLAlertView(appearance: appearance)
+        nameTextField = listAlert?.addTextField("Nome da lista")
+        nameTextField?.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
-        alert?.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { (action: UIAlertAction!) in }))
-
-        
-        alert?.addAction(UIAlertAction(title: "Criar", style: .default, handler: { [weak alert] (_) in
-            let nameTextField = alert?.textFields![0]
-            
-            if !((nameTextField?.text?.isEmpty)!) {
+        createButton = listAlert?.addButton("Criar") {
+            if !((self.nameTextField?.text?.isEmpty)!) {
                 
-                let novaLista = List(name: (nameTextField?.text)!, major: (self.currentUser?._email)!)
+                let novaLista = List(name: (self.nameTextField?.text)!, major: (self.currentUser?._email)!)
                 
                 FirebaseController.save(list: novaLista)
             }
-            
-        }))
+        }
         
-        alert?.textFields![0].addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        alert?.actions[1].isEnabled = false
+        listAlert?.addButton("Cancelar") {}
         
-        self.present(alert!, animated: true, completion: nil)
+        listAlert?.showInfo("Criar", subTitle: "Crie sua lista!")
+        
+        createButton?.isEnabled = false
 
     }
     
     func textFieldDidChange(_ textField: UITextField) {
-        if (textField.text == ""){
-            alert?.actions[1].isEnabled = false
+        
+        if(nameTextField?.text?.isEmpty)!{
+            nameTextField?.layer.borderColor = UIColor.red.cgColor
         } else {
-            alert?.actions[1].isEnabled = true
+            nameTextField?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if (nameTextField?.text?.isEmpty)!{
+            createButton?.isEnabled = false
+        } else {
+            createButton?.isEnabled = true
         }
     }
     

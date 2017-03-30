@@ -220,6 +220,7 @@
 				TargetAttributes = {
 					3F5DB4F61E81569200F25175 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SHV4T6BMAV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -442,9 +443,11 @@
 			baseConfigurationReference = F36B42C20D9C50862C4D0DD4 /* Pods-Shake list.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SHV4T6BMAV;
 				INFOPLIST_FILE = "Shake list/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.gabriel.guimo.Shake-list";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.wallison.fernando.silva.shakelists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -455,9 +458,11 @@
 			baseConfigurationReference = D60006E2D462C34FC1F9F4F6 /* Pods-Shake list.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SHV4T6BMAV;
 				INFOPLIST_FILE = "Shake list/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.gabriel.guimo.Shake-list";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.wallison.fernando.silva.shakelists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

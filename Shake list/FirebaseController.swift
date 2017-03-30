@@ -156,6 +156,18 @@ class FirebaseController {
         add(user: User(email: list._majorUser), on: list)
     }
     
+    static func delete(list: List) {
+        if (FIRApp.defaultApp() == nil){
+            FIRApp.configure()
+        }
+        
+        let listRef = self.ref.child(lists).child(list._name)
+        
+        
+        listRef.removeValue()
+        
+    }
+    
     static func retrieveLists(email: String, handler completionHandler: @escaping ([List]) -> Void) {
         if (FIRApp.defaultApp() == nil){
             FIRApp.configure()

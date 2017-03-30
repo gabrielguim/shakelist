@@ -133,14 +133,14 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bes-19-0cN">
                                             <rect key="frame" x="8" y="16" width="351" height="57"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="sss-Cc-fW7">
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sss-Cc-fW7">
                                                     <rect key="frame" x="0.0" y="0.0" width="351" height="57"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UaB-4g-KYm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="263.5" height="57"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaB-4g-KYm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="57"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Lbw-qI-tkl">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="263.5" height="57"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="57"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EBs-zQ-MP2">
                                                                             <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
@@ -172,7 +172,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-vA-yXs" customClass="CheckBox" customModule="Shake_list" customModuleProvider="target">
-                                                            <rect key="frame" x="263.5" y="0.0" width="87.5" height="57"/>
+                                                            <rect key="frame" x="321" y="0.0" width="30" height="57"/>
                                                             <connections>
                                                                 <action selector="itemState:" destination="Vcx-jK-ero" eventType="touchUpInside" id="3Q2-8J-xcS"/>
                                                             </connections>
@@ -211,11 +211,6 @@
                             <barButtonItem image="ic_share" id="luB-Lt-y5I">
                                 <connections>
                                     <action selector="shareListButton:" destination="5Lw-Vt-G6m" id="awe-rM-o9H"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="ic_info_outline" id="w4R-vt-miW">
-                                <connections>
-                                    <action selector="listInfoButton:" destination="5Lw-Vt-G6m" id="MJB-1c-5aj"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -377,7 +372,6 @@
     </scenes>
     <resources>
         <image name="ic_account_circle" width="24" height="24"/>
-        <image name="ic_info_outline" width="24" height="24"/>
         <image name="ic_list" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>
     </resources>

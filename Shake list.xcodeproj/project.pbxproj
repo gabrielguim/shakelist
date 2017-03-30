@@ -447,7 +447,7 @@
 				DEVELOPMENT_TEAM = SHV4T6BMAV;
 				INFOPLIST_FILE = "Shake list/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.wallison.fernando.silva.shakelists;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.gabrielguimo.shake-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -462,7 +462,7 @@
 				DEVELOPMENT_TEAM = SHV4T6BMAV;
 				INFOPLIST_FILE = "Shake list/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.wallison.fernando.silva.shakelists;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.gabrielguimo.shake-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

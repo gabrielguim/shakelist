@@ -88,7 +88,49 @@ class ListsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.lists?.count)!
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let list = self.lists?[indexPath.row]
 
+        if (list?._majorUser != currentUser?._email){
+            
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                showCloseButton: false,
+                showCircularIcon: false
+            )
+            
+            let notMajorAlert = SCLAlertView(appearance: appearance)
+            
+            notMajorAlert.addButton("Desculpa") {}
+            
+            notMajorAlert.showInfo("Oops!", subTitle: "Você não pode deletar uma lista que não é sua.")
+            
+            return
+        }
+        
+        if editingStyle == .delete {
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                showCloseButton: false,
+                showCircularIcon: false
+            )
+            
+            let deleteAlert = SCLAlertView(appearance: appearance)
+            
+            deleteAlert.addButton("Deletar") {
+                FirebaseController.delete(list: list!)
+            }
+            
+            deleteAlert.addButton("Cancelar") {}
+            
+            deleteAlert.showInfo("Deletar", subTitle: "Deseja realmente deletar a sua lista?")
+        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listIdentifier", for: indexPath)

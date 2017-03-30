@@ -28,10 +28,6 @@ class ItemTableViewController: UITableViewController {
     
     @IBOutlet weak var titleName: UILabel!
     
-    @IBAction func listInfoButton(_ sender: Any) {
-    
-    }
-    
     @IBAction func shareListButton(_ sender: Any) {
         
         let appearance = SCLAlertView.SCLAppearance(
